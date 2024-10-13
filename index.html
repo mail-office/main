@@ -16,22 +16,50 @@
 <body>
     <a-scene>
         <!-- Background Pattern -->
-        <a-sky src="your-background-pattern.jpg" color="#000"></a-sky>
+        <a-sky src="your-background-pattern.jpg" color="#0077be"></a-sky>
 
         <!-- 3D metallic text -->
         <a-entity 
             id="textEntity" 
             position="0 1.5 -3" 
             text="value: mail-office; align: center; width: 4; color: #fff;"
-            material="shader: standard; metalness: 1; roughness: 0;"
+            material="shader: standard; metalness: 0.8; roughness: 0.2;"
             rotation="0 0 0">
         </a-entity>
         
         <!-- Lights -->
-        <a-entity light="type: ambient; color: #fff"></a-entity>
-        <a-entity light="type: directional; color: #fff; intensity: 0.5" position="-1 1 1"></a-entity>
+        <a-entity light="type: ambient; color: #fff; intensity: 0.5"></a-entity>
+        <a-entity light="type: directional; color: #fff; intensity: 1" position="-1 1 1"></a-entity>
     </a-scene>
 
-    <script src="script.js"></script>
+    <script>
+        const textEntity = document.getElementById('textEntity');
+
+        // Continuous rotation
+        let rotation = 0;
+
+        function rotateText() {
+            rotation += 1; // Speed of rotation
+            textEntity.setAttribute('rotation', {x: 0, y: rotation, z: 0});
+            requestAnimationFrame(rotateText);
+        }
+
+        rotateText();
+
+        // Update rotation based on mouse movement
+        document.addEventListener('mousemove', (event) => {
+            const x = (event.clientX / window.innerWidth) * 2 - 1; // Normalize to [-1, 1]
+            const y = -(event.clientY / window.innerHeight) * 2 + 1; // Normalize to [-1, 1]
+
+            const tiltX = y * 15; // Adjust tilt strength
+            const tiltY = x * 15; // Adjust tilt strength
+
+            textEntity.setAttribute('rotation', {
+                x: tiltX,
+                y: rotation, // Maintain ongoing rotation
+                z: tiltY
+            });
+        });
+    </script>
 </body>
 </html>
