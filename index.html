@@ -5,25 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Revolving Text with A-Frame</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-    </style>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.min.js"></script>
 </head>
 <body>
     <a-scene>
-        <!-- 3D text -->
         <a-entity 
             id="textEntity" 
             position="0 1.5 -3" 
-            geometry="primitive: text; value: mail-office; align: center; width: 4;"
-            material="shader: flat; color: #ccc; transparent: true; opacity: 0.8;"
+            text="value: mail-office; align: center; width: 4; color: #ccc;"
             rotation="0 0 0">
         </a-entity>
         
-        <!-- Lights -->
         <a-entity light="type: ambient; color: #fff"></a-entity>
         <a-entity light="type: directional; color: #fff; intensity: 0.5" position="-1 1 1"></a-entity>
     </a-scene>
