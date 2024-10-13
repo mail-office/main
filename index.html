@@ -6,16 +6,28 @@
     <title>3D Revolving Text with A-Frame</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <a-scene>
+        <!-- Background Pattern -->
+        <a-sky src="your-background-pattern.jpg" color="#000"></a-sky>
+
+        <!-- 3D metallic text -->
         <a-entity 
             id="textEntity" 
             position="0 1.5 -3" 
-            text="value: mail-office; align: center; width: 4; color: #ccc;"
+            text="value: mail-office; align: center; width: 4; color: #fff;"
+            material="shader: standard; metalness: 1; roughness: 0;"
             rotation="0 0 0">
         </a-entity>
         
+        <!-- Lights -->
         <a-entity light="type: ambient; color: #fff"></a-entity>
         <a-entity light="type: directional; color: #fff; intensity: 0.5" position="-1 1 1"></a-entity>
     </a-scene>
